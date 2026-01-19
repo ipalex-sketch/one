@@ -1,0 +1,242 @@
+/*
+Theme Name: Casino Ratings
+Author: OpenAI
+Description: Minimalist casino ratings theme with custom casino post type.
+Version: 1.0.0
+*/
+
+:root {
+  --color-navy: #0c1e4a;
+  --color-navy-dark: #091739;
+  --color-accent: #2fb86e;
+  --color-bg: #f5f6fa;
+  --color-card: #ffffff;
+  --color-text: #1b1f2a;
+  --color-muted: #6b7280;
+  --color-border: #e6e8ef;
+  --shadow-soft: 0 8px 20px rgba(12, 30, 74, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  background: linear-gradient(90deg, var(--color-navy-dark), var(--color-navy));
+  color: #fff;
+  padding: 18px 0;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+}
+
+.hero {
+  padding: 48px 0 32px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: var(--color-muted);
+  max-width: 680px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin: 32px 0 16px;
+}
+
+.casino-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.casino-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.casino-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.casino-card__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #f0f2f8;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  color: var(--color-navy);
+  overflow: hidden;
+}
+
+.casino-card__rating {
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.casino-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  background: #eef2ff;
+  color: var(--color-navy);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.casino-card__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.casino-card__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-navy);
+  border: 1px solid var(--color-border);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 24px;
+}
+
+.filter-chip {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 24px;
+}
+
+.sidebar {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+  height: fit-content;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.sidebar .filter-group {
+  margin-bottom: 18px;
+}
+
+.sidebar label {
+  display: block;
+  margin: 6px 0;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.author-box,
+.legal-box {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 24px 0 40px;
+  background: var(--color-navy-dark);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+}
