@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Casino Listing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-logo">Casino Demo</div>
+      <nav class="nav-menu">
+        <span>Рейтинг казино</span>
+        <span>Бонусы</span>
+        <span>Обзоры</span>
+        <span>Ответственная игра</span>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="container hero">
+      <h1>Демо: Рейтинг казино</h1>
+      <p>Пример визуального шаблона со статичными данными для согласования дизайна.</p>
+    </section>
+
+    <section class="container">
+      <div class="filters">
+        <span class="filter-chip filter-chip--active">Mobile-friendly casinos</span>
+        <span class="filter-chip">Крипто казино</span>
+        <span class="filter-chip">High-rollers</span>
+        <span class="filter-chip filter-chip--active">Бездепозитное казино</span>
+        <span class="filter-chip">Для новичков</span>
+        <span class="filter-chip">С минимальным депозитом</span>
+        <span class="filter-chip">Быстрые выплаты</span>
+      </div>
+    </section>
+
+    <section class="container layout">
+      <div>
+        <div class="casino-grid">
+          <article class="casino-card">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">N</div>
+              <div>
+                <h3>Ninja Casino</h3>
+                <div class="casino-card__rating">Рейтинг: 4.7/5</div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">Бонус за регистрацию</span>
+              <span class="badge">Бездепозитный бонус</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €10</div>
+              <div>Валюта: EUR</div>
+            </div>
+            <div class="casino-card__actions">
+              <button class="button button--primary" type="button">Получить бонус</button>
+              <button class="button button--ghost" type="button">Читать обзор</button>
+            </div>
+          </article>
+
+          <article class="casino-card">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">W</div>
+              <div>
+                <h3>Winz</h3>
+                <div class="casino-card__rating">Рейтинг: 4.5/5</div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">Бездепозитный бонус</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €5</div>
+              <div>Валюта: EUR</div>
+            </div>
+            <div class="casino-card__actions">
+              <button class="button button--primary" type="button">Получить бонус</button>
+              <button class="button button--ghost" type="button">Читать обзор</button>
+            </div>
+          </article>
+
+          <article class="casino-card">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">H</div>
+              <div>
+                <h3>Happy Spins</h3>
+                <div class="casino-card__rating">Рейтинг: 4.3/5</div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">Бонус за регистрацию</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €20</div>
+              <div>Валюта: EUR</div>
+            </div>
+            <div class="casino-card__actions">
+              <button class="button button--primary" type="button">Получить бонус</button>
+              <button class="button button--ghost" type="button">Читать обзор</button>
+            </div>
+          </article>
+
+          <article class="casino-card">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">R</div>
+              <div>
+                <h3>Respin</h3>
+                <div class="casino-card__rating">Рейтинг: 4.1/5</div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">Бонус за регистрацию</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €10</div>
+              <div>Валюта: USD</div>
+            </div>
+            <div class="casino-card__actions">
+              <button class="button button--primary" type="button">Получить бонус</button>
+              <button class="button button--ghost" type="button">Читать обзор</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Характеристики</h3>
+        <div class="filter-group">
+          <label>Рейтинг (от)</label>
+          <input type="number" value="4.0">
+        </div>
+        <div class="filter-group">
+          <label>Минимум депозит (до)</label>
+          <input type="number" value="20">
+        </div>
+        <div class="filter-group">
+          <label>
+            <input type="checkbox" checked>
+            Приложение
+          </label>
+        </div>
+        <div class="filter-group">
+          <strong>Лицензия</strong>
+          <label><input type="checkbox" checked> MGA</label>
+          <label><input type="checkbox"> UKGC</label>
+        </div>
+        <div class="filter-group">
+          <strong>Платежный метод</strong>
+          <label><input type="checkbox" checked> Visa</label>
+          <label><input type="checkbox"> Crypto</label>
+        </div>
+        <div class="filter-group">
+          <strong>Страна</strong>
+          <label><input type="checkbox" checked> Estonia</label>
+          <label><input type="checkbox"> Latvia</label>
+        </div>
+        <button class="button button--primary" type="button">Применить</button>
+      </aside>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">© Demo Casino</div>
+  </footer>
+</body>
+</html>
