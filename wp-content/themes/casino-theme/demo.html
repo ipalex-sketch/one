@@ -44,9 +44,11 @@
     .casino-card__rating { font-weight:600; color:var(--color-navy); }
     .rating-stars { display:inline-flex; gap:4px; margin-left:8px; font-size:14px; color:#f5b301; }
     .casino-card__badges { display:flex; flex-wrap:wrap; gap:8px; }
-    .badge { background:#eef2ff; color:var(--color-navy); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+    .badge { background:#eef2ff; color:var(--color-navy); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; display:inline-flex; align-items:center; gap:6px; }
     .badge--ok { background:#e6f7ef; color:#1f7a4f; }
-    .badge--warn { background:#fff4e6; color:#9a5b13; }
+    .badge--warn { background:#ffe6e6; color:#b42318; }
+    .badge__flag { font-size:14px; line-height:1; }
+    .badge__icon { font-weight:700; }
     .casino-card__details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; font-size:13px; color:var(--color-muted); }
     .casino-card__promo { display:flex; align-items:center; justify-content:space-between; gap:8px; background:#f7f9ff; border:1px dashed var(--color-border); border-radius:12px; padding:8px 12px; font-size:13px; color:var(--color-navy); }
     .casino-card__promo button { border:none; background:var(--color-navy); color:#fff; border-radius:999px; padding:6px 10px; font-size:12px; cursor:pointer; }
@@ -143,7 +145,11 @@
             <div class="casino-card__badges">
               <span class="badge">100% до €500</span>
               <span class="badge">50 FS без депозита</span>
-              <span class="badge badge--availability">Проверяем доступность…</span>
+              <span class="badge badge--availability">
+                <span class="badge__flag">🌍</span>
+                <span class="badge__icon">…</span>
+                <span class="badge__label">Проверяем доступность…</span>
+              </span>
             </div>
             <div class="casino-card__details">
               <div>Мин. депозит: €10</div>
@@ -176,7 +182,11 @@
             <div class="casino-card__badges">
               <span class="badge">200% до €1,000</span>
               <span class="badge">25 FS без депозита</span>
-              <span class="badge badge--availability">Проверяем доступность…</span>
+              <span class="badge badge--availability">
+                <span class="badge__flag">🌍</span>
+                <span class="badge__icon">…</span>
+                <span class="badge__label">Проверяем доступность…</span>
+              </span>
             </div>
             <div class="casino-card__details">
               <div>Мин. депозит: €5</div>
@@ -209,7 +219,11 @@
             <div class="casino-card__badges">
               <span class="badge">150% до €700</span>
               <span class="badge">10 FS без депозита</span>
-              <span class="badge badge--availability">Проверяем доступность…</span>
+              <span class="badge badge--availability">
+                <span class="badge__flag">🌍</span>
+                <span class="badge__icon">…</span>
+                <span class="badge__label">Проверяем доступность…</span>
+              </span>
             </div>
             <div class="casino-card__details">
               <div>Мин. депозит: €20</div>
@@ -242,7 +256,11 @@
             <div class="casino-card__badges">
               <span class="badge">100% до €300</span>
               <span class="badge">5 FS без депозита</span>
-              <span class="badge badge--availability">Проверяем доступность…</span>
+              <span class="badge badge--availability">
+                <span class="badge__flag">🌍</span>
+                <span class="badge__icon">…</span>
+                <span class="badge__label">Проверяем доступность…</span>
+              </span>
             </div>
             <div class="casino-card__details">
               <div>Мин. депозит: €10</div>
@@ -356,6 +374,14 @@
   <div class="filters-backdrop" data-filters-close></div>
   <script>
     const userCountry = 'Estonia';
+    const countryFlags = {
+      Estonia: '🇪🇪',
+      Latvia: '🇱🇻',
+      Lithuania: '🇱🇹',
+      Finland: '🇫🇮',
+      Sweden: '🇸🇪',
+      Germany: '🇩🇪'
+    };
 
     document.querySelectorAll('[data-copy]').forEach((button) => {
       button.addEventListener('click', () => {
@@ -376,12 +402,19 @@
         .filter(Boolean);
       const badge = card.querySelector('.badge--availability');
       if (!badge) return;
+      const flag = countryFlags[userCountry] || '🌍';
+      const icon = badge.querySelector('.badge__icon');
+      const label = badge.querySelector('.badge__label');
+      const flagSpan = badge.querySelector('.badge__flag');
+      if (flagSpan) flagSpan.textContent = flag;
       if (countries.includes(userCountry)) {
-        badge.textContent = 'Доступно в вашей стране';
+        if (icon) icon.textContent = '✔';
+        if (label) label.textContent = 'Доступно в вашей стране';
         badge.classList.add('badge--ok');
         badge.classList.remove('badge--warn');
       } else {
-        badge.textContent = 'Недоступно в вашей стране';
+        if (icon) icon.textContent = '✖';
+        if (label) label.textContent = 'Недоступно в вашей стране';
         badge.classList.add('badge--warn');
         badge.classList.remove('badge--ok');
       }
