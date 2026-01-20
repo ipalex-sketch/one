@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Casino Listing</title>
+  <style>
+    :root {
+      --color-navy: #0c1e4a;
+      --color-navy-dark: #091739;
+      --color-accent: #2fb86e;
+      --color-bg: #f5f6fa;
+      --color-card: #ffffff;
+      --color-text: #1b1f2a;
+      --color-muted: #6b7280;
+      --color-border: #e6e8ef;
+      --shadow-soft: 0 8px 20px rgba(12, 30, 74, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Inter","Segoe UI",Arial,sans-serif; color: var(--color-text); background: var(--color-bg); }
+
+    .site-header { background: linear-gradient(90deg, var(--color-navy-dark), var(--color-navy)); color:#fff; padding:18px 0; }
+    .site-header .container { display:flex; align-items:center; justify-content:space-between; }
+    .site-logo { font-weight:700; font-size:20px; letter-spacing:.3px; }
+    .container { width:min(1200px,92%); margin:0 auto; }
+    .nav-menu { display:flex; gap:18px; font-size:14px; }
+
+    .hero { padding:48px 0 32px; }
+    .hero .container { background:#fff; border-radius:20px; padding:28px 32px; box-shadow:var(--shadow-soft); }
+    .hero h1 { font-size:clamp(28px,4vw,44px); margin-bottom:12px; }
+    .hero p { color:var(--color-muted); max-width:680px; }
+
+    .filters-toolbar { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+    .filters-meta { font-size:13px; color:var(--color-muted); }
+    .filters-actions { display:flex; gap:10px; align-items:center; }
+    .filters { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 24px; }
+    .filter-chip { padding:8px 14px; border-radius:999px; border:1px solid var(--color-border); background:#fff; font-size:13px; font-weight:600; color:var(--color-navy); }
+    .filter-chip--active { background:var(--color-navy); color:#fff; border-color:var(--color-navy); }
+
+    .casino-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+    .casino-card { background:var(--color-card); border:1px solid var(--color-border); border-radius:16px; box-shadow:var(--shadow-soft); padding:20px; display:flex; flex-direction:column; gap:12px; }
+    .casino-card__header { display:flex; align-items:center; gap:12px; }
+    .casino-card__logo { width:56px; height:56px; border-radius:12px; background:#f0f2f8; display:grid; place-items:center; font-weight:600; color:var(--color-navy); }
+    .casino-card__rating { font-weight:600; color:var(--color-navy); }
+    .rating-stars { display:inline-flex; gap:4px; margin-left:8px; font-size:14px; color:#f5b301; }
+    .casino-card__badges { display:flex; flex-wrap:wrap; gap:8px; }
+    .badge { background:#eef2ff; color:var(--color-navy); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+    .badge--ok { background:#e6f7ef; color:#1f7a4f; }
+    .badge--warn { background:#fff4e6; color:#9a5b13; }
+    .casino-card__details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; font-size:13px; color:var(--color-muted); }
+    .casino-card__promo { display:flex; align-items:center; justify-content:space-between; gap:8px; background:#f7f9ff; border:1px dashed var(--color-border); border-radius:12px; padding:8px 12px; font-size:13px; color:var(--color-navy); }
+    .casino-card__promo button { border:none; background:var(--color-navy); color:#fff; border-radius:999px; padding:6px 10px; font-size:12px; cursor:pointer; }
+    .casino-card__note { width:100%; border-radius:10px; border:1px solid var(--color-border); padding:10px 12px; font-size:13px; color:var(--color-text); background:#fff; }
+
+    .casino-card__actions { display:flex; gap:12px; align-items:center; margin-top:auto; }
+    .button { display:inline-flex; align-items:center; justify-content:center; padding:10px 16px; border-radius:999px; border:none; font-weight:600; cursor:pointer; }
+    .button--primary { background:var(--color-accent); color:#fff; }
+    .button--ghost { background:transparent; color:var(--color-navy); border:1px solid var(--color-border); }
+
+    .layout { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:24px; }
+    .sidebar { background:#fff; border-radius:16px; border:1px solid var(--color-border); padding:20px; box-shadow:var(--shadow-soft); height:fit-content; }
+    .sidebar__header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+    .sidebar__close { display:none; align-items:center; justify-content:center; border:none; background:#f1f3f9; color:var(--color-navy); border-radius:10px; width:36px; height:36px; cursor:pointer; font-size:18px; margin-left:auto; }
+    .sidebar h3 { margin:0; font-size:16px; }
+    .sidebar .filter-group { margin-bottom:18px; }
+    .sidebar label { display:block; margin:6px 0; font-size:13px; color:var(--color-muted); }
+    .sidebar input[type="range"] { width:100%; margin-top:8px; }
+    .range-value { font-size:12px; color:var(--color-muted); margin-top:4px; }
+    .sidebar input[type="number"], .sidebar select { width:100%; padding:8px 10px; border-radius:10px; border:1px solid var(--color-border); margin-top:6px; background:#fff; font-size:13px; color:var(--color-text); }
+    .select-hint { font-size:12px; color:var(--color-muted); margin-top:6px; }
+
+    .site-footer { margin-top:40px; padding:24px 0 40px; background:var(--color-navy-dark); color:#fff; }
+
+    @media (max-width:900px) {
+      .layout { grid-template-columns:1fr; }
+      .nav-menu { display:none; }
+      .mobile-filters-toggle { display:inline-flex; }
+      .sidebar { order:-1; }
+      .sidebar__close { display:inline-flex; }
+    }
+    @media (max-width:900px) {
+      .sidebar { display:none; position:fixed; inset:90px 16px auto; max-height:calc(100vh - 120px); overflow:auto; z-index:30; }
+      body.filters-open .sidebar { display:block; }
+      .filters-backdrop { display:none; position:fixed; inset:0; background:rgba(9,23,57,0.55); z-index:20; }
+      body.filters-open .filters-backdrop { display:block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-logo">Casino Demo</div>
+      <nav class="nav-menu">
+        <span>Рейтинг казино</span>
+        <span>Бонусы</span>
+        <span>Обзоры</span>
+        <span>Ответственная игра</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <h1>Демо: Рейтинг казино</h1>
+      <p>Пример визуального шаблона со статичными данными для согласования дизайна.</p>
+    </section>
+
+    <section class="container">
+      <div class="filters-toolbar">
+        <div class="filters-meta">Найдено казино: 124</div>
+        <div class="filters-actions">
+          <button class="button button--primary mobile-filters-toggle" type="button" data-filters-toggle>Фильтры</button>
+          <button class="button button--ghost" type="button">Сбросить фильтры</button>
+        </div>
+      </div>
+      <div class="filters">
+        <span class="filter-chip filter-chip--active">Mobile-friendly casinos</span>
+        <span class="filter-chip">Крипто казино</span>
+        <span class="filter-chip">High-rollers</span>
+        <span class="filter-chip filter-chip--active">Бездепозитное казино</span>
+        <span class="filter-chip">Для новичков</span>
+        <span class="filter-chip">С минимальным депозитом</span>
+        <span class="filter-chip">Быстрые выплаты</span>
+      </div>
+    </section>
+
+    <section class="container layout">
+      <div>
+        <div class="casino-grid">
+          <article class="casino-card" data-countries="Estonia,Latvia">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">N</div>
+              <div>
+                <h3>Ninja Casino</h3>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.7</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★★</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">100% до €500</span>
+              <span class="badge">50 FS без депозита</span>
+              <span class="badge badge--availability">Проверяем доступность…</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €10</div>
+              <div>Валюта: EUR</div>
+            </div>
+            <div class="casino-card__promo">
+              <span>Промокод: BONUS50</span>
+              <button type="button" data-copy="BONUS50">Копировать</button>
+            </div>
+            <div class="casino-card__note">Короткая заметка о казино из админки: надежность, бонус и лимиты.</div>
+            <div class="casino-card__actions">
+              <button class="button button--primary">Получить бонус</button>
+              <button class="button button--ghost">Читать обзор</button>
+            </div>
+          </article>
+
+          <article class="casino-card" data-countries="Finland,Sweden">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">W</div>
+              <div>
+                <h3>Winz</h3>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.5</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★☆</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">200% до €1,000</span>
+              <span class="badge">25 FS без депозита</span>
+              <span class="badge badge--availability">Проверяем доступность…</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €5</div>
+              <div>Валюта: EUR</div>
+            </div>
+            <div class="casino-card__promo">
+              <span>Промокод: SPINS25</span>
+              <button type="button" data-copy="SPINS25">Копировать</button>
+            </div>
+            <div class="casino-card__note">Короткая заметка о казино из админки: акции и условия.</div>
+            <div class="casino-card__actions">
+              <button class="button button--primary">Получить бонус</button>
+              <button class="button button--ghost">Читать обзор</button>
+            </div>
+          </article>
+
+          <article class="casino-card" data-countries="Germany,Estonia">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">H</div>
+              <div>
+                <h3>Happy Spins</h3>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.3</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★☆</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">150% до €700</span>
+              <span class="badge">10 FS без депозита</span>
+              <span class="badge badge--availability">Проверяем доступность…</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €20</div>
+              <div>Валюта: EUR</div>
+            </div>
+            <div class="casino-card__promo">
+              <span>Промокод: HAPPY20</span>
+              <button type="button" data-copy="HAPPY20">Копировать</button>
+            </div>
+            <div class="casino-card__note">Короткая заметка о казино из админки: игры и выплаты.</div>
+            <div class="casino-card__actions">
+              <button class="button button--primary">Получить бонус</button>
+              <button class="button button--ghost">Читать обзор</button>
+            </div>
+          </article>
+
+          <article class="casino-card" data-countries="Latvia,Lithuania">
+            <div class="casino-card__header">
+              <div class="casino-card__logo">R</div>
+              <div>
+                <h3>Respin</h3>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.1</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★☆</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
+              </div>
+            </div>
+            <div class="casino-card__badges">
+              <span class="badge">100% до €300</span>
+              <span class="badge">5 FS без депозита</span>
+              <span class="badge badge--availability">Проверяем доступность…</span>
+            </div>
+            <div class="casino-card__details">
+              <div>Мин. депозит: €10</div>
+              <div>Валюта: USD</div>
+            </div>
+            <div class="casino-card__promo">
+              <span>Промокод: RESPIN10</span>
+              <button type="button" data-copy="RESPIN10">Копировать</button>
+            </div>
+            <div class="casino-card__note">Короткая заметка о казино из админки: лимиты и поддержка.</div>
+            <div class="casino-card__actions">
+              <button class="button button--primary">Получить бонус</button>
+              <button class="button button--ghost">Читать обзор</button>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar__header">
+          <h3>Характеристики</h3>
+          <button class="sidebar__close" type="button" aria-label="Закрыть фильтры" data-filters-close-btn>×</button>
+        </div>
+
+        <div class="filter-group">
+          <label>Рейтинг (от)</label>
+          <input type="range" min="0" max="5" step="0.1" value="4.0">
+          <div class="range-value">Текущее: 4.0</div>
+        </div>
+
+        <div class="filter-group">
+          <label>Минимум депозит (до)</label>
+          <input type="range" min="0" max="100" step="5" value="20">
+          <div class="range-value">Текущее: 20</div>
+        </div>
+
+        <div class="filter-group">
+          <strong>Лицензия</strong>
+          <label><input type="checkbox" checked> MGA</label>
+          <label><input type="checkbox"> UKGC</label>
+        </div>
+
+        <div class="filter-group">
+          <strong>Игровой провайдер</strong>
+          <select multiple>
+            <option selected>Pragmatic Play</option>
+            <option>NetEnt</option>
+            <option selected>Play'n GO</option>
+            <option>Microgaming</option>
+            <option>Evolution</option>
+            <option>Yggdrasil</option>
+            <option>Quickspin</option>
+            <option>BGaming</option>
+          </select>
+          <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
+        </div>
+
+        <div class="filter-group">
+          <strong>Платежный метод</strong>
+          <select multiple>
+            <option selected>Visa</option>
+            <option selected>Mastercard</option>
+            <option>Skrill</option>
+            <option>Neteller</option>
+            <option>Crypto</option>
+            <option>Apple Pay</option>
+            <option>Google Pay</option>
+            <option>Bank Transfer</option>
+          </select>
+          <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
+        </div>
+
+        <div class="filter-group">
+          <strong>Валюта</strong>
+          <select multiple>
+            <option selected>EUR</option>
+            <option selected>USD</option>
+            <option>RUB</option>
+            <option>GBP</option>
+            <option>SEK</option>
+          </select>
+          <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
+        </div>
+
+        <div class="filter-group">
+          <strong>Страна</strong>
+          <select multiple>
+            <option selected>Estonia</option>
+            <option>Latvia</option>
+            <option>Lithuania</option>
+            <option>Finland</option>
+            <option>Sweden</option>
+            <option>Germany</option>
+          </select>
+          <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
+        </div>
+
+        <div class="filter-group">
+          <label><input type="checkbox" checked> Приложение</label>
+        </div>
+
+        <button class="button button--primary">Применить</button>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© Demo Casino</div>
+  </footer>
+
+  <div class="filters-backdrop" data-filters-close></div>
+  <script>
+    const userCountry = 'Estonia';
+
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const value = button.getAttribute('data-copy');
+        navigator.clipboard.writeText(value).then(() => {
+          button.textContent = 'Скопировано';
+          setTimeout(() => {
+            button.textContent = 'Копировать';
+          }, 1500);
+        });
+      });
+    });
+
+    document.querySelectorAll('.casino-card').forEach((card) => {
+      const countries = (card.getAttribute('data-countries') || '')
+        .split(',')
+        .map((c) => c.trim())
+        .filter(Boolean);
+      const badge = card.querySelector('.badge--availability');
+      if (!badge) return;
+      if (countries.includes(userCountry)) {
+        badge.textContent = 'Доступно в вашей стране';
+        badge.classList.add('badge--ok');
+        badge.classList.remove('badge--warn');
+      } else {
+        badge.textContent = 'Недоступно в вашей стране';
+        badge.classList.add('badge--warn');
+        badge.classList.remove('badge--ok');
+      }
+    });
+
+    const toggle = document.querySelector('[data-filters-toggle]');
+    const backdrop = document.querySelector('[data-filters-close]');
+    const closeButton = document.querySelector('[data-filters-close-btn]');
+    const body = document.body;
+
+    if (toggle && backdrop) {
+      toggle.addEventListener('click', () => body.classList.add('filters-open'));
+      backdrop.addEventListener('click', () => body.classList.remove('filters-open'));
+    }
+    if (closeButton) {
+      closeButton.addEventListener('click', () => body.classList.remove('filters-open'));
+    }
+  </script>
+</body>
+</html>
