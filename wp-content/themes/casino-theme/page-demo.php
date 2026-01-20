@@ -196,8 +196,15 @@ get_header();
         </div>
         <div class="filter-group">
             <strong>Страна</strong>
-            <label><input type="checkbox" checked /> Estonia</label>
-            <label><input type="checkbox" /> Latvia</label>
+            <select multiple>
+                <option selected>Estonia</option>
+                <option>Latvia</option>
+                <option>Lithuania</option>
+                <option>Finland</option>
+                <option>Sweden</option>
+                <option>Germany</option>
+            </select>
+            <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
         </div>
         <button class="button button--primary" type="button">Применить</button>
     </aside>

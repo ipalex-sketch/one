@@ -88,12 +88,23 @@
                     ?>
                     <div class="filter-group">
                         <strong><?php echo esc_html($label); ?></strong>
-                        <?php foreach ($terms as $term) : ?>
-                            <label>
-                                <input type="checkbox" name="<?php echo esc_attr($taxonomy); ?>[]" value="<?php echo esc_attr($term->slug); ?>" <?php checked(in_array($term->slug, $selected_terms, true)); ?> />
-                                <?php echo esc_html($term->name); ?>
-                            </label>
-                        <?php endforeach; ?>
+                        <?php if ($taxonomy === 'casino_country') : ?>
+                            <select name="<?php echo esc_attr($taxonomy); ?>[]" multiple>
+                                <?php foreach ($terms as $term) : ?>
+                                    <option value="<?php echo esc_attr($term->slug); ?>" <?php selected(in_array($term->slug, $selected_terms, true)); ?>>
+                                        <?php echo esc_html($term->name); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
+                        <?php else : ?>
+                            <?php foreach ($terms as $term) : ?>
+                                <label>
+                                    <input type="checkbox" name="<?php echo esc_attr($taxonomy); ?>[]" value="<?php echo esc_attr($term->slug); ?>" <?php checked(in_array($term->slug, $selected_terms, true)); ?> />
+                                    <?php echo esc_html($term->name); ?>
+                                </label>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
