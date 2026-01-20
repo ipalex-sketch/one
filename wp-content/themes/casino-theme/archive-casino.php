@@ -6,6 +6,13 @@
 
 <form method="get">
     <section class="container">
+        <div class="filters-toolbar">
+            <div class="filters-meta">Найдено казино: <?php echo esc_html($wp_query->found_posts); ?></div>
+            <div class="filters-actions">
+                <button class="button button--primary mobile-filters-toggle" type="button" data-filters-toggle>Фильтры</button>
+                <a class="button button--ghost" href="<?php echo esc_url(get_post_type_archive_link('casino')); ?>">Сбросить фильтры</a>
+            </div>
+        </div>
         <div class="filters">
             <?php
             $feature_terms = get_terms([
@@ -91,4 +98,5 @@
         </aside>
     </section>
 </form>
+<div class="filters-backdrop" data-filters-close></div>
 <?php get_footer(); ?>

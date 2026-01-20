@@ -134,6 +134,29 @@
       gap: 8px;
     }
 
+    .casino-card__promo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: #f7f9ff;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--color-navy);
+    }
+
+    .casino-card__promo button {
+      border: none;
+      background: var(--color-navy);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
     .badge {
       background: #eef2ff;
       color: var(--color-navy);
@@ -205,6 +228,10 @@
       display: flex;
       gap: 10px;
       align-items: center;
+    }
+
+    .mobile-filters-toggle {
+      display: none;
     }
 
     .filter-chip {
@@ -333,6 +360,41 @@
       .nav-menu {
         display: none;
       }
+
+      .mobile-filters-toggle {
+        display: inline-flex;
+      }
+
+      .sidebar {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none;
+        position: fixed;
+        inset: 90px 16px auto;
+        max-height: calc(100vh - 120px);
+        overflow: auto;
+        z-index: 30;
+      }
+
+      body.filters-open .sidebar {
+        display: block;
+      }
+
+      .filters-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(9, 23, 57, 0.55);
+        z-index: 20;
+      }
+
+      body.filters-open .filters-backdrop {
+        display: block;
+      }
     }
   </style>
 </head>
@@ -358,6 +420,7 @@
       <div class="filters-toolbar">
         <div class="filters-meta">Найдено казино: 124</div>
         <div class="filters-actions">
+          <button class="button button--primary mobile-filters-toggle" type="button" data-filters-toggle>Фильтры</button>
           <button class="button button--ghost" type="button">Сбросить фильтры</button>
         </div>
       </div>
@@ -391,6 +454,10 @@
               <div>Мин. депозит: €10</div>
               <div>Валюта: EUR</div>
             </div>
+            <div class="casino-card__promo">
+              <span>Промокод: BONUS50</span>
+              <button type="button" data-copy="BONUS50">Копировать</button>
+            </div>
             <div class="casino-card__actions">
               <button class="button button--primary" type="button">Получить бонус</button>
               <button class="button button--ghost" type="button">Читать обзор</button>
@@ -411,6 +478,10 @@
             <div class="casino-card__details">
               <div>Мин. депозит: €5</div>
               <div>Валюта: EUR</div>
+            </div>
+            <div class="casino-card__promo">
+              <span>Промокод: SPINS25</span>
+              <button type="button" data-copy="SPINS25">Копировать</button>
             </div>
             <div class="casino-card__actions">
               <button class="button button--primary" type="button">Получить бонус</button>
@@ -433,6 +504,10 @@
               <div>Мин. депозит: €20</div>
               <div>Валюта: EUR</div>
             </div>
+            <div class="casino-card__promo">
+              <span>Промокод: HAPPY20</span>
+              <button type="button" data-copy="HAPPY20">Копировать</button>
+            </div>
             <div class="casino-card__actions">
               <button class="button button--primary" type="button">Получить бонус</button>
               <button class="button button--ghost" type="button">Читать обзор</button>
@@ -453,6 +528,10 @@
             <div class="casino-card__details">
               <div>Мин. депозит: €10</div>
               <div>Валюта: USD</div>
+            </div>
+            <div class="casino-card__promo">
+              <span>Промокод: RESPIN10</span>
+              <button type="button" data-copy="RESPIN10">Копировать</button>
             </div>
             <div class="casino-card__actions">
               <button class="button button--primary" type="button">Получить бонус</button>
@@ -541,5 +620,32 @@
   <footer class="site-footer">
     <div class="container">© Demo Casino</div>
   </footer>
+  <div class="filters-backdrop" data-filters-close></div>
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const value = button.getAttribute('data-copy');
+        navigator.clipboard.writeText(value).then(() => {
+          button.textContent = 'Скопировано';
+          setTimeout(() => {
+            button.textContent = 'Копировать';
+          }, 1500);
+        });
+      });
+    });
+
+    const toggle = document.querySelector('[data-filters-toggle]');
+    const backdrop = document.querySelector('[data-filters-close]');
+    const body = document.body;
+
+    if (toggle && backdrop) {
+      toggle.addEventListener('click', () => {
+        body.classList.add('filters-open');
+      });
+      backdrop.addEventListener('click', () => {
+        body.classList.remove('filters-open');
+      });
+    }
+  </script>
 </body>
 </html>

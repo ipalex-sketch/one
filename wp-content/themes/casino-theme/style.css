@@ -140,6 +140,29 @@ a {
   gap: 8px;
 }
 
+.casino-card__promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #f7f9ff;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--color-navy);
+}
+
+.casino-card__promo button {
+  border: none;
+  background: var(--color-navy);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
 .badge {
   background: #eef2ff;
   color: var(--color-navy);
@@ -211,6 +234,10 @@ a {
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.mobile-filters-toggle {
+  display: none;
 }
 
 .filter-chip {
@@ -357,5 +384,40 @@ a {
 
   .nav-menu {
     display: none;
+  }
+
+  .mobile-filters-toggle {
+    display: inline-flex;
+  }
+
+  .sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+    position: fixed;
+    inset: 90px 16px auto;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    z-index: 30;
+  }
+
+  body.filters-open .sidebar {
+    display: block;
+  }
+
+  .filters-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 23, 57, 0.55);
+    z-index: 20;
+  }
+
+  body.filters-open .filters-backdrop {
+    display: block;
   }
 }

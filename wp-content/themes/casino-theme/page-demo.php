@@ -13,6 +13,7 @@ get_header();
     <div class="filters-toolbar">
         <div class="filters-meta">Найдено казино: 124</div>
         <div class="filters-actions">
+            <button class="button button--primary mobile-filters-toggle" type="button" data-filters-toggle>Фильтры</button>
             <button class="button button--ghost" type="button">Сбросить фильтры</button>
         </div>
     </div>
@@ -38,6 +39,7 @@ get_header();
                     'min_deposit' => '€10',
                     'currency' => 'EUR',
                     'badges' => ['Бонус за регистрацию', 'Бездепозитный бонус'],
+                    'promocode' => 'BONUS50',
                 ],
                 [
                     'name' => 'Winz',
@@ -45,6 +47,7 @@ get_header();
                     'min_deposit' => '€5',
                     'currency' => 'EUR',
                     'badges' => ['Бездепозитный бонус'],
+                    'promocode' => 'SPINS25',
                 ],
                 [
                     'name' => 'Happy Spins',
@@ -52,6 +55,7 @@ get_header();
                     'min_deposit' => '€20',
                     'currency' => 'EUR',
                     'badges' => ['Бонус за регистрацию'],
+                    'promocode' => 'HAPPY20',
                 ],
                 [
                     'name' => 'Respin',
@@ -59,6 +63,7 @@ get_header();
                     'min_deposit' => '€10',
                     'currency' => 'USD',
                     'badges' => ['Бонус за регистрацию'],
+                    'promocode' => 'RESPIN10',
                 ],
                 [
                     'name' => 'Coolbet',
@@ -66,6 +71,7 @@ get_header();
                     'min_deposit' => '€15',
                     'currency' => 'EUR',
                     'badges' => ['Бездепозитный бонус'],
+                    'promocode' => 'COOL15',
                 ],
                 [
                     'name' => 'BetSafe',
@@ -73,6 +79,7 @@ get_header();
                     'min_deposit' => '€5',
                     'currency' => 'EUR',
                     'badges' => [],
+                    'promocode' => 'BET5',
                 ],
             ];
             foreach ($demo_cards as $card) :
@@ -101,6 +108,10 @@ get_header();
                     <div class="casino-card__details">
                         <div>Мин. депозит: <?php echo esc_html($card['min_deposit']); ?></div>
                         <div>Валюта: <?php echo esc_html($card['currency']); ?></div>
+                    </div>
+                    <div class="casino-card__promo">
+                        <span>Промокод: <?php echo esc_html($card['promocode']); ?></span>
+                        <button type="button" data-copy="<?php echo esc_attr($card['promocode']); ?>">Копировать</button>
                     </div>
 
                     <div class="casino-card__actions">
@@ -187,4 +198,31 @@ get_header();
         <button class="button button--primary" type="button">Применить</button>
     </aside>
 </section>
+<div class="filters-backdrop" data-filters-close></div>
+<script>
+  document.querySelectorAll('[data-copy]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const value = button.getAttribute('data-copy');
+      navigator.clipboard.writeText(value).then(() => {
+        button.textContent = 'Скопировано';
+        setTimeout(() => {
+          button.textContent = 'Копировать';
+        }, 1500);
+      });
+    });
+  });
+
+  const toggle = document.querySelector('[data-filters-toggle]');
+  const backdrop = document.querySelector('[data-filters-close]');
+  const body = document.body;
+
+  if (toggle && backdrop) {
+    toggle.addEventListener('click', () => {
+      body.classList.add('filters-open');
+    });
+    backdrop.addEventListener('click', () => {
+      body.classList.remove('filters-open');
+    });
+  }
+</script>
 <?php get_footer(); ?>
