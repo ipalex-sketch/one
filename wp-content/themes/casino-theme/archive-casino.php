@@ -52,6 +52,7 @@
         </div>
 
         <aside class="sidebar">
+            <button class="sidebar__close" type="button" aria-label="Закрыть фильтры" data-filters-close-btn>×</button>
             <h3>Характеристики</h3>
             <div class="filter-group">
                 <label>Рейтинг (от)</label>

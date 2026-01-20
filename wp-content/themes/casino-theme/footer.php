@@ -19,6 +19,7 @@
 
   const toggle = document.querySelector('[data-filters-toggle]');
   const backdrop = document.querySelector('[data-filters-close]');
+  const closeButton = document.querySelector('[data-filters-close-btn]');
   const body = document.body;
 
   if (toggle && backdrop) {
@@ -26,6 +27,12 @@
       body.classList.add('filters-open');
     });
     backdrop.addEventListener('click', () => {
+      body.classList.remove('filters-open');
+    });
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
       body.classList.remove('filters-open');
     });
   }

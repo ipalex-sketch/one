@@ -43,6 +43,8 @@ $currency_label = $currency_terms && !is_wp_error($currency_terms) ? $currency_t
         </div>
     <?php endif; ?>
 
+    <input class="casino-card__note" type="text" placeholder="Введите текст для заметки" />
+
     <div class="casino-card__actions">
         <a class="button button--primary" href="<?php the_permalink(); ?>">Получить бонус</a>
         <a class="button button--ghost" href="<?php the_permalink(); ?>">Читать обзор</a>

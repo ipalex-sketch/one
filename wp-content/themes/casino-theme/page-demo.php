@@ -113,6 +113,7 @@ get_header();
                         <span>Промокод: <?php echo esc_html($card['promocode']); ?></span>
                         <button type="button" data-copy="<?php echo esc_attr($card['promocode']); ?>">Копировать</button>
                     </div>
+                    <input class="casino-card__note" type="text" placeholder="Введите текст для заметки" />
 
                     <div class="casino-card__actions">
                         <button class="button button--primary" type="button">Получить бонус</button>
@@ -131,6 +132,7 @@ get_header();
     </div>
 
     <aside class="sidebar">
+        <button class="sidebar__close" type="button" aria-label="Закрыть фильтры" data-filters-close-btn>×</button>
         <h3>Характеристики</h3>
         <div class="filter-group">
             <label>Рейтинг (от)</label>
@@ -214,6 +216,7 @@ get_header();
 
   const toggle = document.querySelector('[data-filters-toggle]');
   const backdrop = document.querySelector('[data-filters-close]');
+  const closeButton = document.querySelector('[data-filters-close-btn]');
   const body = document.body;
 
   if (toggle && backdrop) {
@@ -221,6 +224,12 @@ get_header();
       body.classList.add('filters-open');
     });
     backdrop.addEventListener('click', () => {
+      body.classList.remove('filters-open');
+    });
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
       body.classList.remove('filters-open');
     });
   }

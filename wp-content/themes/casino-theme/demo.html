@@ -157,6 +157,16 @@
       cursor: pointer;
     }
 
+    .casino-card__note {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--color-text);
+      background: #fff;
+    }
+
     .badge {
       background: #eef2ff;
       color: var(--color-navy);
@@ -298,6 +308,21 @@
       height: fit-content;
     }
 
+    .sidebar__close {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: #f1f3f9;
+      color: var(--color-navy);
+      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-left: auto;
+    }
+
     .sidebar h3 {
       margin-top: 0;
       font-size: 16px;
@@ -367,6 +392,10 @@
 
       .sidebar {
         order: -1;
+      }
+
+      .sidebar__close {
+        display: inline-flex;
       }
     }
 
@@ -454,14 +483,15 @@
               <div>Мин. депозит: €10</div>
               <div>Валюта: EUR</div>
             </div>
-            <div class="casino-card__promo">
-              <span>Промокод: BONUS50</span>
-              <button type="button" data-copy="BONUS50">Копировать</button>
-            </div>
-            <div class="casino-card__actions">
-              <button class="button button--primary" type="button">Получить бонус</button>
-              <button class="button button--ghost" type="button">Читать обзор</button>
-            </div>
+      <div class="casino-card__promo">
+        <span>Промокод: BONUS50</span>
+        <button type="button" data-copy="BONUS50">Копировать</button>
+      </div>
+      <input class="casino-card__note" type="text" placeholder="Введите текст для заметки" />
+      <div class="casino-card__actions">
+        <button class="button button--primary" type="button">Получить бонус</button>
+        <button class="button button--ghost" type="button">Читать обзор</button>
+      </div>
           </article>
 
           <article class="casino-card">
@@ -479,14 +509,15 @@
               <div>Мин. депозит: €5</div>
               <div>Валюта: EUR</div>
             </div>
-            <div class="casino-card__promo">
-              <span>Промокод: SPINS25</span>
-              <button type="button" data-copy="SPINS25">Копировать</button>
-            </div>
-            <div class="casino-card__actions">
-              <button class="button button--primary" type="button">Получить бонус</button>
-              <button class="button button--ghost" type="button">Читать обзор</button>
-            </div>
+      <div class="casino-card__promo">
+        <span>Промокод: SPINS25</span>
+        <button type="button" data-copy="SPINS25">Копировать</button>
+      </div>
+      <input class="casino-card__note" type="text" placeholder="Введите текст для заметки" />
+      <div class="casino-card__actions">
+        <button class="button button--primary" type="button">Получить бонус</button>
+        <button class="button button--ghost" type="button">Читать обзор</button>
+      </div>
           </article>
 
           <article class="casino-card">
@@ -504,14 +535,15 @@
               <div>Мин. депозит: €20</div>
               <div>Валюта: EUR</div>
             </div>
-            <div class="casino-card__promo">
-              <span>Промокод: HAPPY20</span>
-              <button type="button" data-copy="HAPPY20">Копировать</button>
-            </div>
-            <div class="casino-card__actions">
-              <button class="button button--primary" type="button">Получить бонус</button>
-              <button class="button button--ghost" type="button">Читать обзор</button>
-            </div>
+      <div class="casino-card__promo">
+        <span>Промокод: HAPPY20</span>
+        <button type="button" data-copy="HAPPY20">Копировать</button>
+      </div>
+      <input class="casino-card__note" type="text" placeholder="Введите текст для заметки" />
+      <div class="casino-card__actions">
+        <button class="button button--primary" type="button">Получить бонус</button>
+        <button class="button button--ghost" type="button">Читать обзор</button>
+      </div>
           </article>
 
           <article class="casino-card">
@@ -529,14 +561,15 @@
               <div>Мин. депозит: €10</div>
               <div>Валюта: USD</div>
             </div>
-            <div class="casino-card__promo">
-              <span>Промокод: RESPIN10</span>
-              <button type="button" data-copy="RESPIN10">Копировать</button>
-            </div>
-            <div class="casino-card__actions">
-              <button class="button button--primary" type="button">Получить бонус</button>
-              <button class="button button--ghost" type="button">Читать обзор</button>
-            </div>
+      <div class="casino-card__promo">
+        <span>Промокод: RESPIN10</span>
+        <button type="button" data-copy="RESPIN10">Копировать</button>
+      </div>
+      <input class="casino-card__note" type="text" placeholder="Введите текст для заметки" />
+      <div class="casino-card__actions">
+        <button class="button button--primary" type="button">Получить бонус</button>
+        <button class="button button--ghost" type="button">Читать обзор</button>
+      </div>
           </article>
         </div>
         <div class="pagination-demo">
@@ -549,6 +582,7 @@
       </div>
 
       <aside class="sidebar">
+        <button class="sidebar__close" type="button" aria-label="Закрыть фильтры" data-filters-close-btn>×</button>
         <h3>Характеристики</h3>
         <div class="filter-group">
           <label>Рейтинг (от)</label>
@@ -636,6 +670,7 @@
 
     const toggle = document.querySelector('[data-filters-toggle]');
     const backdrop = document.querySelector('[data-filters-close]');
+    const closeButton = document.querySelector('[data-filters-close-btn]');
     const body = document.body;
 
     if (toggle && backdrop) {
@@ -643,6 +678,12 @@
         body.classList.add('filters-open');
       });
       backdrop.addEventListener('click', () => {
+        body.classList.remove('filters-open');
+      });
+    }
+
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
         body.classList.remove('filters-open');
       });
     }
