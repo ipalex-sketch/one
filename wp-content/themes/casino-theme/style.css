@@ -323,6 +323,14 @@ a {
   height: fit-content;
 }
 
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
 .sidebar__close {
   display: none;
   align-items: center;
@@ -339,7 +347,7 @@ a {
 }
 
 .sidebar h3 {
-  margin-top: 0;
+  margin: 0;
   font-size: 16px;
 }
 

@@ -52,8 +52,10 @@
         </div>
 
         <aside class="sidebar">
-            <button class="sidebar__close" type="button" aria-label="Закрыть фильтры" data-filters-close-btn>×</button>
-            <h3>Характеристики</h3>
+            <div class="sidebar__header">
+                <h3>Характеристики</h3>
+                <button class="sidebar__close" type="button" aria-label="Закрыть фильтры" data-filters-close-btn>×</button>
+            </div>
             <div class="filter-group">
                 <label>Рейтинг (от)</label>
                 <input type="number" name="rating" min="0" max="5" step="0.1" value="<?php echo isset($_GET['rating']) ? esc_attr($_GET['rating']) : ''; ?>" />
