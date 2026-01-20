@@ -138,11 +138,13 @@ get_header();
         </div>
         <div class="filter-group">
             <label>Рейтинг (от)</label>
-            <input type="number" value="4.0" />
+            <input type="range" min="0" max="5" step="0.1" value="4.0" />
+            <div class="range-value">Текущее: 4.0</div>
         </div>
         <div class="filter-group">
             <label>Минимум депозит (до)</label>
-            <input type="number" value="20" />
+            <input type="range" min="0" max="100" step="5" value="20" />
+            <div class="range-value">Текущее: 20</div>
         </div>
         <div class="filter-group">
             <strong>Валюта</strong>

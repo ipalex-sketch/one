@@ -58,11 +58,13 @@
             </div>
             <div class="filter-group">
                 <label>Рейтинг (от)</label>
-                <input type="number" name="rating" min="0" max="5" step="0.1" value="<?php echo isset($_GET['rating']) ? esc_attr($_GET['rating']) : ''; ?>" />
+                <input type="range" name="rating" min="0" max="5" step="0.1" value="<?php echo isset($_GET['rating']) ? esc_attr($_GET['rating']) : '4.0'; ?>" />
+                <div class="range-value">Текущее: <?php echo isset($_GET['rating']) ? esc_html($_GET['rating']) : '4.0'; ?></div>
             </div>
             <div class="filter-group">
                 <label>Минимум депозит (до)</label>
-                <input type="number" name="min_deposit" value="<?php echo isset($_GET['min_deposit']) ? esc_attr($_GET['min_deposit']) : ''; ?>" />
+                <input type="range" name="min_deposit" min="0" max="100" step="5" value="<?php echo isset($_GET['min_deposit']) ? esc_attr($_GET['min_deposit']) : '20'; ?>" />
+                <div class="range-value">Текущее: <?php echo isset($_GET['min_deposit']) ? esc_html($_GET['min_deposit']) : '20'; ?></div>
             </div>
             <div class="filter-group">
                 <label>
