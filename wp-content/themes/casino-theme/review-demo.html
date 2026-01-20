@@ -283,6 +283,40 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
     }
+    .review-form__stars {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      gap: 4px;
+    }
+    .review-form__stars input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .review-form__stars label {
+      margin: 0;
+      cursor: pointer;
+      font-size: 20px;
+      color: #d1d5db;
+      line-height: 1;
+    }
+    .review-form__stars label::before {
+      content: "★";
+    }
+    .review-form__stars .half::before {
+      content: "★";
+      position: absolute;
+      width: 50%;
+      overflow: hidden;
+    }
+    .review-form__stars label.half {
+      position: relative;
+    }
+    .review-form__stars input:checked ~ label,
+    .review-form__stars label:hover,
+    .review-form__stars label:hover ~ label {
+      color: #f5b301;
+    }
 
     .sidebar {
       background: #fff;
@@ -553,14 +587,29 @@
                 <input id="review-name" type="text" placeholder="Например, Анна" />
               </div>
               <div>
-                <label for="review-rating">Оценка</label>
-                <select id="review-rating">
-                  <option value="5">5 — Отлично</option>
-                  <option value="4">4 — Хорошо</option>
-                  <option value="3">3 — Нормально</option>
-                  <option value="2">2 — Плохо</option>
-                  <option value="1">1 — Очень плохо</option>
-                </select>
+                <label>Оценка</label>
+                <div class="review-form__stars" aria-label="Оценка">
+                  <input type="radio" id="rating-5" name="rating" value="5" />
+                  <label for="rating-5" title="5 звезд"></label>
+                  <input type="radio" id="rating-4-5" name="rating" value="4.5" />
+                  <label for="rating-4-5" class="half" title="4.5 звезды"></label>
+                  <input type="radio" id="rating-4" name="rating" value="4" />
+                  <label for="rating-4" title="4 звезды"></label>
+                  <input type="radio" id="rating-3-5" name="rating" value="3.5" />
+                  <label for="rating-3-5" class="half" title="3.5 звезды"></label>
+                  <input type="radio" id="rating-3" name="rating" value="3" />
+                  <label for="rating-3" title="3 звезды"></label>
+                  <input type="radio" id="rating-2-5" name="rating" value="2.5" />
+                  <label for="rating-2-5" class="half" title="2.5 звезды"></label>
+                  <input type="radio" id="rating-2" name="rating" value="2" />
+                  <label for="rating-2" title="2 звезды"></label>
+                  <input type="radio" id="rating-1-5" name="rating" value="1.5" />
+                  <label for="rating-1-5" class="half" title="1.5 звезды"></label>
+                  <input type="radio" id="rating-1" name="rating" value="1" />
+                  <label for="rating-1" title="1 звезда"></label>
+                  <input type="radio" id="rating-0-5" name="rating" value="0.5" />
+                  <label for="rating-0-5" class="half" title="0.5 звезды"></label>
+                </div>
               </div>
             </div>
             <div>
