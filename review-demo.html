@@ -110,25 +110,6 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      font-size: 13px;
-      color: var(--color-muted);
-    }
-    .summary-grid strong {
-      display: block;
-      color: var(--color-text);
-      font-weight: 600;
-    }
-    .summary-item {
-      background: #f7f9ff;
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-      padding: 10px 12px;
-    }
-
     .bonus-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -298,7 +279,6 @@
       .nav-menu { display: none; }
     }
     @media (max-width: 600px) {
-      .summary-grid { grid-template-columns: 1fr; }
       .pros-cons { grid-template-columns: 1fr; }
     }
   </style>
@@ -341,12 +321,7 @@
       <div>
         <div class="card">
           <h2>Кратко о казино</h2>
-          <div class="summary-grid">
-            <div class="summary-item"><strong>Лицензия</strong>MGA</div>
-            <div class="summary-item"><strong>Год основания</strong>2019</div>
-            <div class="summary-item"><strong>Мин. депозит</strong>€10</div>
-            <div class="summary-item"><strong>Макс. вывод</strong>€500</div>
-          </div>
+          <p>Надежное казино с лицензией и быстрыми выплатами, ориентированное на игроков из Европы.</p>
           <div class="pill-list">
             <span class="badge">100% до €500</span>
             <span class="badge">50 FS без депозита</span>
@@ -445,6 +420,10 @@
             <div class="info-item"><span>Минимум депозит</span>€10</div>
             <div class="info-item"><span>Минимальный вывод</span>€20</div>
             <div class="info-item"><span>Скорость вывода</span>1–6 часов</div>
+            <div class="info-item"><span>Валюта счета</span>EUR, USD, SEK</div>
+            <div class="info-item"><span>Провайдеры</span>Pragmatic Play, NetEnt</div>
+            <div class="info-item"><span>Платежные системы</span>Visa, Skrill, Apple Pay</div>
+            <div class="info-item"><span>Верификация</span>Да</div>
             <div class="info-item"><span>Мобильное приложение</span>Да</div>
             <div class="info-item"><span>Языки сайта</span>EN, RU, DE</div>
           </div>
