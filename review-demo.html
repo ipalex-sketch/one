@@ -122,6 +122,12 @@
       color: var(--color-text);
       font-weight: 600;
     }
+    .summary-item {
+      background: #f7f9ff;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
 
     .bonus-row {
       display: grid;
@@ -242,8 +248,24 @@
       margin: 0;
       font-size: 16px;
     }
-    .info-item {
+    .info-list {
+      display: grid;
+      gap: 10px;
       font-size: 13px;
+      color: var(--color-muted);
+    }
+    .info-item {
+      display: grid;
+      gap: 4px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+      background: #f9faff;
+    }
+    .info-item span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
       color: var(--color-muted);
     }
 
@@ -320,10 +342,10 @@
         <div class="card">
           <h2>Кратко о казино</h2>
           <div class="summary-grid">
-            <div><strong>Мин. депозит</strong>€10</div>
-            <div><strong>Вейджер</strong>x35</div>
-            <div><strong>Макс. вывод</strong>€500</div>
-            <div><strong>Скорость выплат</strong>1–6 часов</div>
+            <div class="summary-item"><strong>Лицензия</strong>MGA</div>
+            <div class="summary-item"><strong>Год основания</strong>2019</div>
+            <div class="summary-item"><strong>Мин. депозит</strong>€10</div>
+            <div class="summary-item"><strong>Макс. вывод</strong>€500</div>
           </div>
           <div class="pill-list">
             <span class="badge">100% до €500</span>
@@ -377,8 +399,18 @@
         </div>
 
         <div class="card section">
+          <h2>Провайдеры</h2>
+          <p>Pragmatic Play, NetEnt, Play'n GO, Microgaming, Evolution, Yggdrasil.</p>
+        </div>
+
+        <div class="card section">
           <h2>Платежи</h2>
           <p>Visa, Mastercard, Skrill, Neteller, Crypto. Лимиты и скорость выплат подстраиваются под статус игрока.</p>
+        </div>
+
+        <div class="card section">
+          <h2>Платежные системы</h2>
+          <p>Visa, Mastercard, Skrill, Neteller, Apple Pay, Google Pay, банковский перевод.</p>
         </div>
 
         <div class="card section">
@@ -406,14 +438,16 @@
       <aside class="sidebar">
         <div>
           <h3>Характеристики</h3>
-          <div class="info-item">Лицензия: MGA</div>
-          <div class="info-item">Доступная страна: Estonia</div>
-          <div class="info-item">Год основания: 2019</div>
-          <div class="info-item">Минимум депозит: €10</div>
-          <div class="info-item">Минимальный вывод: €20</div>
-          <div class="info-item">Скорость вывода: 1–6 часов</div>
-          <div class="info-item">Мобильное приложение: Да</div>
-          <div class="info-item">Языки сайта: EN, RU, DE</div>
+          <div class="info-list">
+            <div class="info-item"><span>Лицензия</span>MGA</div>
+            <div class="info-item"><span>Доступная страна</span>Estonia</div>
+            <div class="info-item"><span>Год основания</span>2019</div>
+            <div class="info-item"><span>Минимум депозит</span>€10</div>
+            <div class="info-item"><span>Минимальный вывод</span>€20</div>
+            <div class="info-item"><span>Скорость вывода</span>1–6 часов</div>
+            <div class="info-item"><span>Мобильное приложение</span>Да</div>
+            <div class="info-item"><span>Языки сайта</span>EN, RU, DE</div>
+          </div>
         </div>
         <div>
           <div class="badge badge--availability" data-countries="Estonia,Latvia">
