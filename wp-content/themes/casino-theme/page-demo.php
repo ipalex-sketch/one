@@ -10,6 +10,12 @@ get_header();
 </section>
 
 <section class="container">
+    <div class="filters-toolbar">
+        <div class="filters-meta">Найдено казино: 124</div>
+        <div class="filters-actions">
+            <button class="button button--ghost" type="button">Сбросить фильтры</button>
+        </div>
+    </div>
     <div class="filters">
         <span class="filter-chip filter-chip--active">Mobile-friendly casinos</span>
         <span class="filter-chip">Крипто казино</span>
@@ -104,6 +110,13 @@ get_header();
                 </article>
             <?php endforeach; ?>
         </div>
+        <div class="pagination-demo">
+            <span class="is-active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+        <div class="pagination-hint">Пагинация / ленивая загрузка</div>
     </div>
 
     <aside class="sidebar">
@@ -115,6 +128,12 @@ get_header();
         <div class="filter-group">
             <label>Минимум депозит (до)</label>
             <input type="number" value="20" />
+        </div>
+        <div class="filter-group">
+            <strong>Валюта</strong>
+            <label><input type="checkbox" checked /> EUR</label>
+            <label><input type="checkbox" /> USD</label>
+            <label><input type="checkbox" /> RUB</label>
         </div>
         <div class="filter-group">
             <label>
