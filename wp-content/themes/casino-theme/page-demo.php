@@ -129,8 +129,31 @@ get_header();
         </div>
         <div class="filter-group">
             <strong>Платежный метод</strong>
-            <label><input type="checkbox" checked /> Visa</label>
-            <label><input type="checkbox" /> Crypto</label>
+            <select multiple>
+                <option selected>Visa</option>
+                <option selected>Mastercard</option>
+                <option>Skrill</option>
+                <option>Neteller</option>
+                <option>Crypto</option>
+                <option>Apple Pay</option>
+                <option>Google Pay</option>
+                <option>Bank Transfer</option>
+            </select>
+            <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
+        </div>
+        <div class="filter-group">
+            <strong>Игровой провайдер</strong>
+            <select multiple>
+                <option selected>Pragmatic Play</option>
+                <option>NetEnt</option>
+                <option selected>Play'n GO</option>
+                <option>Microgaming</option>
+                <option>Evolution</option>
+                <option>Yggdrasil</option>
+                <option>Quickspin</option>
+                <option>BGaming</option>
+            </select>
+            <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
         </div>
         <div class="filter-group">
             <strong>Страна</strong>
