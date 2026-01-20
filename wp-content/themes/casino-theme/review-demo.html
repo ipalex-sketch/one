@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Casino Review</title>
+  <style>
+    :root {
+      --color-navy: #0c1e4a;
+      --color-navy-dark: #091739;
+      --color-accent: #2fb86e;
+      --color-bg: #f5f6fa;
+      --color-card: #ffffff;
+      --color-text: #1b1f2a;
+      --color-muted: #6b7280;
+      --color-border: #e6e8ef;
+      --shadow-soft: 0 8px 20px rgba(12, 30, 74, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+    .site-header {
+      background: linear-gradient(90deg, var(--color-navy-dark), var(--color-navy));
+      color: #fff;
+      padding: 18px 0;
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.3px;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+    }
+    .review-hero {
+      padding: 48px 0 24px;
+    }
+    .review-hero .container {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 32px;
+      box-shadow: var(--shadow-soft);
+    }
+    .review-hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 40px);
+    }
+    .review-hero p {
+      color: var(--color-muted);
+      margin: 0;
+    }
+    .review-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 24px;
+    }
+    .review-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+    .review-card h2 {
+      margin-top: 0;
+    }
+    .review-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+    .review-stats strong {
+      display: block;
+      color: var(--color-text);
+      font-weight: 600;
+    }
+    .badge {
+      background: #eef2ff;
+      color: var(--color-navy);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .review-section {
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+    .review-section h2 {
+      margin-top: 0;
+    }
+    .sidebar {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      height: fit-content;
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+    .sidebar .info-item {
+      font-size: 13px;
+      color: var(--color-muted);
+      margin-bottom: 8px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .button--primary {
+      background: var(--color-accent);
+      color: #fff;
+    }
+    .button--ghost {
+      background: transparent;
+      color: var(--color-navy);
+      border: 1px solid var(--color-border);
+    }
+    .site-footer {
+      margin-top: 40px;
+      padding: 24px 0 40px;
+      background: var(--color-navy-dark);
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .review-grid { grid-template-columns: 1fr; }
+      .nav-menu { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-logo">Casino Demo</div>
+      <nav class="nav-menu">
+        <span>Рейтинг казино</span>
+        <span>Бонусы</span>
+        <span>Обзоры</span>
+        <span>Ответственная игра</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="review-hero">
+      <div class="container">
+        <h1>Обзор Ninja Casino</h1>
+        <p>Лицензия MGA, быстрые выплаты и бонусы для новых игроков.</p>
+      </div>
+    </section>
+
+    <section class="container review-grid">
+      <div>
+        <div class="review-card">
+          <h2>Кратко о казино</h2>
+          <div class="review-stats">
+            <div><strong>Рейтинг</strong>4.7 / 5</div>
+            <div><strong>Мин. депозит</strong>€10</div>
+            <div><strong>Вейджер</strong>x35</div>
+            <div><strong>Макс. вывод</strong>€500</div>
+          </div>
+          <div style="margin-top: 12px;">
+            <span class="badge">Бонус за регистрацию</span>
+            <span class="badge">Бездепозитный бонус</span>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <h2>Бонусы</h2>
+          <p>Получите приветственный бонус до €500 + 100 FS. Промокод: <strong>BONUS50</strong>.</p>
+        </div>
+
+        <div class="review-section">
+          <h2>Игры</h2>
+          <p>Слоты, live‑казино и настольные игры от Pragmatic Play, NetEnt, Play'n GO.</p>
+        </div>
+
+        <div class="review-section">
+          <h2>Платежи</h2>
+          <p>Visa, Mastercard, Skrill, Neteller, Crypto. Среднее время вывода — 1–6 часов.</p>
+        </div>
+
+        <div class="review-section">
+          <h2>Безопасность</h2>
+          <p>Лицензия MGA, SSL‑шифрование, проверенные провайдеры.</p>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Характеристики</h3>
+        <div class="info-item">Лицензия: MGA</div>
+        <div class="info-item">Валюта: EUR, USD</div>
+        <div class="info-item">Страна: Estonia</div>
+        <div class="info-item">Приложение: Да</div>
+        <button class="button button--primary" type="button">Получить бонус</button>
+        <button class="button button--ghost" type="button" style="margin-top: 8px;">Перейти на сайт</button>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© Demo Casino</div>
+  </footer>
+</body>
+</html>

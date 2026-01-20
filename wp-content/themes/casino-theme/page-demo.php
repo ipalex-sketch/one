@@ -113,7 +113,7 @@ get_header();
                         <span>Промокод: <?php echo esc_html($card['promocode']); ?></span>
                         <button type="button" data-copy="<?php echo esc_attr($card['promocode']); ?>">Копировать</button>
                     </div>
-                    <input class="casino-card__note" type="text" placeholder="Введите текст для заметки" />
+                    <div class="casino-card__note">Короткая заметка о казино из админки: надежность, бонус и лимиты.</div>
 
                     <div class="casino-card__actions">
                         <button class="button button--primary" type="button">Получить бонус</button>
