@@ -252,6 +252,38 @@
       font-size: 14px;
     }
 
+    .review-form {
+      margin-top: 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .review-form label {
+      font-size: 12px;
+      color: var(--color-muted);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .review-form input,
+    .review-form textarea,
+    .review-form select {
+      width: 100%;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .review-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .review-form__row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
     .sidebar {
       background: #fff;
       border-radius: 16px;
@@ -514,6 +546,29 @@
               <p class="review-card__text">Понравились промо на выходные и удобное мобильное приложение.</p>
             </div>
           </div>
+          <form class="review-form">
+            <div class="review-form__row">
+              <div>
+                <label for="review-name">Ваше имя</label>
+                <input id="review-name" type="text" placeholder="Например, Анна" />
+              </div>
+              <div>
+                <label for="review-rating">Оценка</label>
+                <select id="review-rating">
+                  <option value="5">5 — Отлично</option>
+                  <option value="4">4 — Хорошо</option>
+                  <option value="3">3 — Нормально</option>
+                  <option value="2">2 — Плохо</option>
+                  <option value="1">1 — Очень плохо</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="review-text">Отзыв</label>
+              <textarea id="review-text" placeholder="Поделитесь впечатлениями о казино"></textarea>
+            </div>
+            <button class="button button--primary" type="button">Отправить отзыв</button>
+          </form>
         </div>
       </div>
 
