@@ -85,13 +85,27 @@ get_header();
             foreach ($demo_cards as $card) :
                 ?>
                 <article class="casino-card">
-                    <div class="casino-card__header">
+                    <div class="casino-card__header" itemscope itemtype="https://schema.org/AggregateRating">
                         <div class="casino-card__logo">
                             <?php echo esc_html(mb_substr($card['name'], 0, 1)); ?>
                         </div>
                         <div>
                             <h3><?php echo esc_html($card['name']); ?></h3>
-                            <div class="casino-card__rating">Рейтинг: <?php echo esc_html($card['rating']); ?>/5</div>
+                            <div class="casino-card__rating">
+                                Рейтинг:
+                                <span itemprop="ratingValue"><?php echo esc_html($card['rating']); ?></span>/5
+                                <span class="rating-stars" aria-hidden="true">
+                                    <?php
+                                    $stars = (int) round((float) $card['rating']);
+                                    $stars = max(0, min(5, $stars));
+                                    for ($i = 0; $i < 5; $i++) {
+                                        echo $i < $stars ? '★' : '☆';
+                                    }
+                                    ?>
+                                </span>
+                                <meta itemprop="bestRating" content="5" />
+                                <meta itemprop="ratingCount" content="1" />
+                            </div>
                         </div>
                     </div>
 

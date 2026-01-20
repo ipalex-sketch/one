@@ -134,6 +134,18 @@ a {
   color: var(--color-navy);
 }
 
+.rating-stars {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 8px;
+  font-size: 14px;
+  color: #f5b301;
+}
+
+.rating-stars span {
+  line-height: 1;
+}
+
 .casino-card__badges {
   display: flex;
   flex-wrap: wrap;

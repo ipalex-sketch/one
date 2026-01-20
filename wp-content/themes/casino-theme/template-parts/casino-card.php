@@ -8,7 +8,7 @@ $currency_terms = get_the_terms(get_the_ID(), 'casino_currency');
 $currency_label = $currency_terms && !is_wp_error($currency_terms) ? $currency_terms[0]->name : '—';
 ?>
 <article class="casino-card">
-    <div class="casino-card__header">
+    <div class="casino-card__header" itemscope itemtype="https://schema.org/AggregateRating">
         <div class="casino-card__logo">
             <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('thumbnail'); ?>
@@ -18,7 +18,21 @@ $currency_label = $currency_terms && !is_wp_error($currency_terms) ? $currency_t
         </div>
         <div>
             <h3><?php the_title(); ?></h3>
-            <div class="casino-card__rating">Рейтинг: <?php echo esc_html($rating ?: '—'); ?>/5</div>
+            <div class="casino-card__rating">
+                Рейтинг:
+                <span itemprop="ratingValue"><?php echo esc_html($rating ?: '—'); ?></span>/5
+                <span class="rating-stars" aria-hidden="true">
+                    <?php
+                    $stars = (int) round((float) $rating);
+                    $stars = max(0, min(5, $stars));
+                    for ($i = 0; $i < 5; $i++) {
+                        echo $i < $stars ? '★' : '☆';
+                    }
+                    ?>
+                </span>
+                <meta itemprop="bestRating" content="5" />
+                <meta itemprop="ratingCount" content="1" />
+            </div>
         </div>
     </div>
 

@@ -128,6 +128,18 @@
       color: var(--color-navy);
     }
 
+    .rating-stars {
+      display: inline-flex;
+      gap: 4px;
+      margin-left: 8px;
+      font-size: 14px;
+      color: #f5b301;
+    }
+
+    .rating-stars span {
+      line-height: 1;
+    }
+
     .casino-card__badges {
       display: flex;
       flex-wrap: wrap;
@@ -491,7 +503,12 @@
               <div class="casino-card__logo">N</div>
               <div>
                 <h3>Ninja Casino</h3>
-                <div class="casino-card__rating">Рейтинг: 4.7/5</div>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.7</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★★</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
               </div>
             </div>
             <div class="casino-card__badges">
@@ -518,7 +535,12 @@
               <div class="casino-card__logo">W</div>
               <div>
                 <h3>Winz</h3>
-                <div class="casino-card__rating">Рейтинг: 4.5/5</div>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.5</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★☆</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
               </div>
             </div>
             <div class="casino-card__badges">
@@ -544,7 +566,12 @@
               <div class="casino-card__logo">H</div>
               <div>
                 <h3>Happy Spins</h3>
-                <div class="casino-card__rating">Рейтинг: 4.3/5</div>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.3</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★☆</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
               </div>
             </div>
             <div class="casino-card__badges">
@@ -570,7 +597,12 @@
               <div class="casino-card__logo">R</div>
               <div>
                 <h3>Respin</h3>
-                <div class="casino-card__rating">Рейтинг: 4.1/5</div>
+                <div class="casino-card__rating" itemscope itemtype="https://schema.org/AggregateRating">
+                  Рейтинг: <span itemprop="ratingValue">4.1</span>/5
+                  <span class="rating-stars" aria-hidden="true">★★★★☆</span>
+                  <meta itemprop="bestRating" content="5">
+                  <meta itemprop="ratingCount" content="1">
+                </div>
               </div>
             </div>
             <div class="casino-card__badges">
