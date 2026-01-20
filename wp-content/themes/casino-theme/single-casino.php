@@ -52,12 +52,7 @@ $bonus_games = get_post_meta(get_the_ID(), '_casino_bonus_games', true);
 </section>
 
 <section class="container">
-    <div class="author-box">
-        <h2>Автор</h2>
-        <p><strong>Эксперт по бонусам</strong></p>
-        <p>Пишет обзоры и следит за актуальностью рейтингов.</p>
-        <a class="button button--ghost" href="#">Страница автора</a>
-    </div>
+    <?php get_template_part('template-parts/author-box'); ?>
 </section>
 
 <section class="container">

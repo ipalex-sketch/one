@@ -250,6 +250,49 @@
       color: var(--color-muted);
     }
 
+    .author-box {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: 12px;
+    }
+    .author-box__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-box__avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #f0f2f8;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: var(--color-navy);
+    }
+    .author-box__name {
+      font-weight: 700;
+      margin: 0;
+    }
+    .author-box__role {
+      font-size: 12px;
+      color: var(--color-muted);
+    }
+    .author-box__bio {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 14px;
+    }
+    .author-box__links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -440,6 +483,22 @@
       </aside>
     </section>
   </main>
+
+  <section class="container" style="margin-top: 32px;">
+    <div class="author-box">
+      <div class="author-box__header">
+        <div class="author-box__avatar">А</div>
+        <div>
+          <p class="author-box__name">Анна Романова</p>
+          <div class="author-box__role">Эксперт по бонусам</div>
+        </div>
+      </div>
+      <p class="author-box__bio">Пишет обзоры, проверяет условия бонусов и обновляет рейтинги казино.</p>
+      <div class="author-box__links">
+        <button class="button button--ghost" type="button">Страница автора</button>
+      </div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="container">© Demo Casino</div>

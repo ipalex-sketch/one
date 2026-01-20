@@ -226,6 +226,9 @@ get_header();
     </aside>
 </section>
 <div class="filters-backdrop" data-filters-close></div>
+<section class="container" style="margin-top: 32px;">
+    <?php get_template_part('template-parts/author-box'); ?>
+</section>
 <script>
   document.querySelectorAll('[data-copy]').forEach((button) => {
     button.addEventListener('click', () => {

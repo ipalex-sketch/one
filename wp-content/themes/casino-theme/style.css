@@ -479,6 +479,78 @@ a {
   box-shadow: var(--shadow-soft);
 }
 
+.author-box {
+  display: grid;
+  gap: 12px;
+}
+
+.author-box__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-box__avatar img {
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+.author-box__name {
+  font-weight: 700;
+  margin: 0;
+}
+
+.author-box__role {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.author-box__bio {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.author-box__links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.author-box--compact .author-box__avatar img {
+  width: 48px;
+  height: 48px;
+}
+
+.author-profile {
+  display: grid;
+  gap: 16px;
+}
+
+.author-posts {
+  display: grid;
+  gap: 12px;
+}
+
+.author-posts__item {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.author-posts__item h3 {
+  margin: 0 0 6px;
+}
+
+.author-posts__meta {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
 .site-footer {
   margin-top: 40px;
   padding: 24px 0 40px;

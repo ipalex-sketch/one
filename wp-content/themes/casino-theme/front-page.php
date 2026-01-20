@@ -51,10 +51,7 @@
             </div>
         </div>
         <aside class="sidebar">
-            <h3>Автор</h3>
-            <p><strong>Эксперт по бонусам</strong></p>
-            <p>Опыт анализа рынка казино 7+ лет. Пишет обзоры и следит за актуальностью рейтингов.</p>
-            <a class="button button--ghost" href="#">Страница автора</a>
+            <?php get_template_part('template-parts/author-box', null, ['compact' => true]); ?>
         </aside>
     </div>
 </section>

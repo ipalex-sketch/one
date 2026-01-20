@@ -112,7 +112,10 @@
             <?php endforeach; ?>
             <button class="button button--primary" type="submit">Применить</button>
         </aside>
-    </section>
+</section>
 </form>
+<section class="container" style="margin-top: 32px;">
+    <?php get_template_part('template-parts/author-box'); ?>
+</section>
 <div class="filters-backdrop" data-filters-close></div>
 <?php get_footer(); ?>
