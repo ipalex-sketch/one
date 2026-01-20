@@ -17,7 +17,7 @@
                 foreach ($feature_terms as $term) :
                     $is_active = in_array($term->slug, $selected_features, true);
                     ?>
-                    <label class="filter-chip">
+                    <label class="filter-chip <?php echo $is_active ? 'filter-chip--active' : ''; ?>">
                         <input type="checkbox" name="casino_feature[]" value="<?php echo esc_attr($term->slug); ?>" <?php checked($is_active); ?> />
                         <?php echo esc_html($term->name); ?>
                     </label>
