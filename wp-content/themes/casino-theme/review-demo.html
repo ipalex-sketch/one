@@ -123,6 +123,41 @@
       font-weight: 600;
     }
 
+    .bonus-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .bonus-card {
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #f9faff;
+      display: grid;
+      gap: 10px;
+    }
+    .bonus-card__title {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .bonus-card__meta {
+      font-size: 12px;
+      color: var(--color-muted);
+    }
+    .bonus-card__code {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px 10px;
+      border: 1px dashed var(--color-border);
+      color: var(--color-navy);
+    }
+
     .badge {
       background: #eef2ff;
       color: var(--color-navy);
@@ -307,7 +342,33 @@
 
         <div class="card section">
           <h2>Бонусы и промо</h2>
-          <p>Приветственный пакет до €500 + 100 FS. Дополнительные акции для мобильных игроков каждый уик‑энд.</p>
+          <p>Подборка актуальных предложений. В каждом блоке можно указать собственный промокод.</p>
+          <div class="bonus-row">
+            <div class="bonus-card">
+              <div class="bonus-card__title">Приветственный бонус</div>
+              <div class="bonus-card__meta">100% до €500 + 50 FS</div>
+              <div class="bonus-card__code">
+                <span>Код: BONUS50</span>
+                <button type="button" data-copy="BONUS50">Копировать</button>
+              </div>
+            </div>
+            <div class="bonus-card">
+              <div class="bonus-card__title">Бонус на выходные</div>
+              <div class="bonus-card__meta">50% до €200 + 25 FS</div>
+              <div class="bonus-card__code">
+                <span>Код: WEEKEND25</span>
+                <button type="button" data-copy="WEEKEND25">Копировать</button>
+              </div>
+            </div>
+            <div class="bonus-card">
+              <div class="bonus-card__title">Reload для VIP</div>
+              <div class="bonus-card__meta">30% до €300</div>
+              <div class="bonus-card__code">
+                <span>Код: VIP30</span>
+                <button type="button" data-copy="VIP30">Копировать</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="card section">
@@ -346,9 +407,13 @@
         <div>
           <h3>Характеристики</h3>
           <div class="info-item">Лицензия: MGA</div>
-          <div class="info-item">Валюта: EUR, USD</div>
-          <div class="info-item">Мин. депозит: €10</div>
-          <div class="info-item">Приложение: Да</div>
+          <div class="info-item">Доступная страна: Estonia</div>
+          <div class="info-item">Год основания: 2019</div>
+          <div class="info-item">Минимум депозит: €10</div>
+          <div class="info-item">Минимальный вывод: €20</div>
+          <div class="info-item">Скорость вывода: 1–6 часов</div>
+          <div class="info-item">Мобильное приложение: Да</div>
+          <div class="info-item">Языки сайта: EN, RU, DE</div>
         </div>
         <div>
           <div class="badge badge--availability" data-countries="Estonia,Latvia">
