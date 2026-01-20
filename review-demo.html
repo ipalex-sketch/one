@@ -215,6 +215,43 @@
       color: var(--color-muted);
     }
 
+    .reviews-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .review-card {
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: 6px;
+    }
+    .review-card__header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+    .review-card__author {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .review-card__rating {
+      color: #f5b301;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+    .review-card__text {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 14px;
+    }
+
     .sidebar {
       background: #fff;
       border-radius: 16px;
@@ -448,6 +485,33 @@
                 <li>Нет некоторых локальных валют</li>
                 <li>Ограничения по странам</li>
               </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card section">
+          <h2>Отзывы игроков</h2>
+          <div class="reviews-list">
+            <div class="review-card">
+              <div class="review-card__header">
+                <span class="review-card__author">Игорь М.</span>
+                <span class="review-card__rating">★★★★★</span>
+              </div>
+              <p class="review-card__text">Быстрые выплаты и понятные условия по бонусам, поддержка отвечает быстро.</p>
+            </div>
+            <div class="review-card">
+              <div class="review-card__header">
+                <span class="review-card__author">Мария К.</span>
+                <span class="review-card__rating">★★★★☆</span>
+              </div>
+              <p class="review-card__text">Хороший выбор игр, но хотелось бы больше локальных способов оплаты.</p>
+            </div>
+            <div class="review-card">
+              <div class="review-card__header">
+                <span class="review-card__author">Денис П.</span>
+                <span class="review-card__rating">★★★★★</span>
+              </div>
+              <p class="review-card__text">Понравились промо на выходные и удобное мобильное приложение.</p>
             </div>
           </div>
         </div>
