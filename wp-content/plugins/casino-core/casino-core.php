@@ -24,10 +24,31 @@ function casino_core_register_post_type() {
         'rewrite' => ['slug' => 'casinos'],
         'show_in_rest' => true,
     ]);
+
+    register_post_type('bonus', [
+        'labels' => [
+            'name' => 'Бонусы',
+            'singular_name' => 'Бонус',
+            'add_new_item' => 'Добавить бонус',
+            'edit_item' => 'Редактировать бонус',
+        ],
+        'public' => true,
+        'has_archive' => true,
+        'menu_icon' => 'dashicons-tickets-alt',
+        'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
+        'rewrite' => ['slug' => 'bonuses'],
+        'show_in_rest' => true,
+    ]);
 }
 add_action('init', 'casino_core_register_post_type');
 
 function casino_core_register_taxonomies() {
+    register_taxonomy('casino_menu', 'casino', [
+        'label' => 'Меню казино',
+        'hierarchical' => false,
+        'show_in_rest' => true,
+    ]);
+
     register_taxonomy('casino_feature', 'casino', [
         'label' => 'Фильтры казино',
         'hierarchical' => false,
@@ -63,8 +84,88 @@ function casino_core_register_taxonomies() {
         'hierarchical' => false,
         'show_in_rest' => true,
     ]);
+
+    register_taxonomy('bonus_menu', 'bonus', [
+        'label' => 'Меню бонусов',
+        'hierarchical' => false,
+        'show_in_rest' => true,
+    ]);
 }
 add_action('init', 'casino_core_register_taxonomies');
+
+function casino_core_register_menu_terms() {
+    $casino_terms = [
+        'Рейтинг казино',
+        'Топ казино',
+        'Новые казино',
+        'Мобильные казино',
+        'Казино с лицензией',
+        'Черный список казино',
+        'Для хайроллеров',
+        'С минимальным депозитом',
+    ];
+    foreach ($casino_terms as $term_name) {
+        if (!term_exists($term_name, 'casino_menu')) {
+            wp_insert_term($term_name, 'casino_menu');
+        }
+    }
+
+    $bonus_terms = [
+        'Приветственные бонусы',
+        'Фриспины',
+        'Депозитные бонусы',
+        'Бездепозитные бонусы',
+        'HighRoller бонусы',
+        'Кешбэк бонусы',
+        'Reload бонусы',
+        'Бонусы на день рождения',
+        'Эксклюзивные бонусы',
+    ];
+    foreach ($bonus_terms as $term_name) {
+        if (!term_exists($term_name, 'bonus_menu')) {
+            wp_insert_term($term_name, 'bonus_menu');
+        }
+    }
+}
+
+function casino_core_render_term_seo_field($taxonomy) {
+    ?>
+    <div class="form-field term-seo-text-wrap">
+        <label for="term_seo_text">SEO текст</label>
+        <textarea name="term_seo_text" id="term_seo_text" rows="5"></textarea>
+        <p class="description">Добавьте SEO текст для страницы тега.</p>
+    </div>
+    <?php
+}
+
+function casino_core_render_term_seo_field_edit($term) {
+    $seo_text = get_term_meta($term->term_id, 'term_seo_text', true);
+    ?>
+    <tr class="form-field term-seo-text-wrap">
+        <th scope="row"><label for="term_seo_text">SEO текст</label></th>
+        <td>
+            <textarea name="term_seo_text" id="term_seo_text" rows="5"><?php echo esc_textarea($seo_text); ?></textarea>
+            <p class="description">Добавьте SEO текст для страницы тега.</p>
+        </td>
+    </tr>
+    <?php
+}
+
+function casino_core_save_term_seo_text($term_id) {
+    if (isset($_POST['term_seo_text'])) {
+        update_term_meta($term_id, 'term_seo_text', wp_kses_post($_POST['term_seo_text']));
+    }
+}
+
+add_action('casino_menu_add_form_fields', 'casino_core_render_term_seo_field');
+add_action('casino_menu_edit_form_fields', 'casino_core_render_term_seo_field_edit');
+add_action('created_casino_menu', 'casino_core_save_term_seo_text');
+add_action('edited_casino_menu', 'casino_core_save_term_seo_text');
+
+add_action('bonus_menu_add_form_fields', 'casino_core_render_term_seo_field');
+add_action('bonus_menu_edit_form_fields', 'casino_core_render_term_seo_field_edit');
+add_action('created_bonus_menu', 'casino_core_save_term_seo_text');
+add_action('edited_bonus_menu', 'casino_core_save_term_seo_text');
 
 function casino_core_register_meta_boxes() {
     add_meta_box(
@@ -271,6 +372,8 @@ add_action('pre_get_posts', 'casino_core_filter_archive_query');
 
 function casino_core_activate_plugin() {
     casino_core_register_post_type();
+    casino_core_register_taxonomies();
+    casino_core_register_menu_terms();
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'casino_core_activate_plugin');
