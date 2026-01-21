@@ -1,0 +1,136 @@
+<?php get_header(); ?>
+<section class="container hero">
+    <h1>Рейтинг казино</h1>
+    <p>Фильтруйте список казино по ключевым характеристикам и выбирайте лучшие предложения.</p>
+</section>
+
+<form method="get">
+    <section class="container">
+        <div class="filters">
+            <?php
+            $menu_terms = get_terms([
+                'taxonomy' => 'casino_menu',
+                'hide_empty' => false,
+            ]);
+            if (!empty($menu_terms) && !is_wp_error($menu_terms)) :
+                foreach ($menu_terms as $term) :
+                    ?>
+                    <a class="filter-chip" href="<?php echo esc_url(get_term_link($term)); ?>">
+                        <?php echo esc_html($term->name); ?>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+        <div class="filters-toolbar">
+            <div class="filters-meta">Найдено казино: <?php echo esc_html($wp_query->found_posts); ?></div>
+            <div class="filters-actions">
+                <button class="button button--primary mobile-filters-toggle" type="button" data-filters-toggle>Фильтры</button>
+                <a class="button button--ghost" href="<?php echo esc_url(get_post_type_archive_link('casino')); ?>">Сбросить фильтры</a>
+            </div>
+        </div>
+        <div class="filters">
+            <?php
+            $feature_terms = get_terms([
+                'taxonomy' => 'casino_feature',
+                'hide_empty' => false,
+            ]);
+            $selected_features = isset($_GET['casino_feature']) ? (array) $_GET['casino_feature'] : [];
+            if (!empty($feature_terms) && !is_wp_error($feature_terms)) :
+                foreach ($feature_terms as $term) :
+                    $is_active = in_array($term->slug, $selected_features, true);
+                    ?>
+                    <label class="filter-chip <?php echo $is_active ? 'filter-chip--active' : ''; ?>">
+                        <input type="checkbox" name="casino_feature[]" value="<?php echo esc_attr($term->slug); ?>" <?php checked($is_active); ?> />
+                        <?php echo esc_html($term->name); ?>
+                    </label>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <span class="filter-chip">Добавьте теги фильтров в админке</span>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <section class="container layout">
+        <div>
+            <div class="casino-grid">
+                <?php if (have_posts()) : ?>
+                    <?php while (have_posts()) : the_post(); ?>
+                        <?php get_template_part('template-parts/casino-card'); ?>
+                    <?php endwhile; ?>
+                <?php else : ?>
+                    <p>Нет результатов. Попробуйте изменить фильтры.</p>
+                <?php endif; ?>
+            </div>
+
+            <div class="section-title">Навигация</div>
+            <?php the_posts_pagination(); ?>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <h3>Характеристики</h3>
+                <button class="sidebar__close" type="button" aria-label="Закрыть фильтры" data-filters-close-btn>×</button>
+            </div>
+            <div class="filter-group">
+                <label>Рейтинг (от)</label>
+                <input type="range" name="rating" min="0" max="5" step="0.1" value="<?php echo isset($_GET['rating']) ? esc_attr($_GET['rating']) : '4.0'; ?>" />
+                <div class="range-value">Текущее: <?php echo isset($_GET['rating']) ? esc_html($_GET['rating']) : '4.0'; ?></div>
+            </div>
+            <div class="filter-group">
+                <label>Минимум депозит (до)</label>
+                <input type="range" name="min_deposit" min="0" max="100" step="5" value="<?php echo isset($_GET['min_deposit']) ? esc_attr($_GET['min_deposit']) : '20'; ?>" />
+                <div class="range-value">Текущее: <?php echo isset($_GET['min_deposit']) ? esc_html($_GET['min_deposit']) : '20'; ?></div>
+            </div>
+            <div class="filter-group">
+                <label>
+                    <input type="checkbox" name="has_app" value="1" <?php checked(isset($_GET['has_app'])); ?> />
+                    Приложение
+                </label>
+            </div>
+            <?php
+            $taxonomies = [
+                'casino_license' => 'Лицензия',
+                'casino_provider' => 'Игровой провайдер',
+                'casino_payment' => 'Платежный метод',
+                'casino_currency' => 'Валюта',
+                'casino_country' => 'Страна',
+            ];
+            foreach ($taxonomies as $taxonomy => $label) :
+                $terms = get_terms([
+                    'taxonomy' => $taxonomy,
+                    'hide_empty' => false,
+                ]);
+                $selected_terms = isset($_GET[$taxonomy]) ? (array) $_GET[$taxonomy] : [];
+                if (!empty($terms) && !is_wp_error($terms)) :
+                    ?>
+                    <div class="filter-group">
+                        <strong><?php echo esc_html($label); ?></strong>
+                        <?php if ($taxonomy === 'casino_country') : ?>
+                            <select name="<?php echo esc_attr($taxonomy); ?>[]" multiple>
+                                <?php foreach ($terms as $term) : ?>
+                                    <option value="<?php echo esc_attr($term->slug); ?>" <?php selected(in_array($term->slug, $selected_terms, true)); ?>>
+                                        <?php echo esc_html($term->name); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="select-hint">Используйте Ctrl/⌘ для мультивыбора</div>
+                        <?php else : ?>
+                            <?php foreach ($terms as $term) : ?>
+                                <label>
+                                    <input type="checkbox" name="<?php echo esc_attr($taxonomy); ?>[]" value="<?php echo esc_attr($term->slug); ?>" <?php checked(in_array($term->slug, $selected_terms, true)); ?> />
+                                    <?php echo esc_html($term->name); ?>
+                                </label>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <button class="button button--primary" type="submit">Применить</button>
+        </aside>
+</section>
+</form>
+<section class="container" style="margin-top: 32px;">
+    <?php get_template_part('template-parts/author-box'); ?>
+</section>
+<div class="filters-backdrop" data-filters-close></div>
+<?php get_footer(); ?>

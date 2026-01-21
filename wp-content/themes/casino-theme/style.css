@@ -1,0 +1,612 @@
+/*
+Theme Name: Casino Ratings
+Author: OpenAI
+Description: Minimalist casino ratings theme with custom casino post type.
+Version: 1.0.0
+*/
+
+:root {
+  --color-navy: #0c1e4a;
+  --color-navy-dark: #091739;
+  --color-accent: #2fb86e;
+  --color-bg: #f5f6fa;
+  --color-card: #ffffff;
+  --color-text: #1b1f2a;
+  --color-muted: #6b7280;
+  --color-border: #e6e8ef;
+  --shadow-soft: 0 8px 20px rgba(12, 30, 74, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  background: linear-gradient(90deg, var(--color-navy-dark), var(--color-navy));
+  color: #fff;
+  padding: 18px 0;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.3px;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+}
+
+.hero {
+  padding: 48px 0 32px;
+}
+
+.hero .container {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-soft);
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: var(--color-muted);
+  max-width: 680px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin: 32px 0 16px;
+}
+
+.casino-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.casino-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.casino-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 24px rgba(12, 30, 74, 0.12);
+}
+
+.casino-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.casino-card__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #f0f2f8;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  color: var(--color-navy);
+  overflow: hidden;
+}
+
+.casino-card__rating {
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.rating-stars {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 8px;
+  font-size: 14px;
+  color: #f5b301;
+}
+
+.rating-stars span {
+  line-height: 1;
+}
+
+.casino-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.casino-card__promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #f7f9ff;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--color-navy);
+}
+
+.casino-card__promo button {
+  border: none;
+  background: var(--color-navy);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.casino-card__note {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--color-muted);
+  background: #fff;
+  line-height: 1.4;
+}
+
+.review-hero {
+  padding: 48px 0 24px;
+}
+
+.review-hero .container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-soft);
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 24px;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.review-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.review-stats strong {
+  display: block;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.review-section {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.review-section h2 {
+  margin-top: 0;
+}
+
+.badge {
+  background: #eef2ff;
+  color: var(--color-navy);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.casino-card__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.casino-card__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-navy);
+  border: 1px solid var(--color-border);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 24px;
+}
+
+.filters-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filters-meta {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.filters-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.mobile-filters-toggle {
+  display: none;
+}
+
+.filter-chip {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy);
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-chip input {
+  display: none;
+}
+
+.filter-chip--active {
+  background: var(--color-navy);
+  color: #fff;
+  border-color: var(--color-navy);
+}
+
+.pagination-demo {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 24px 0 8px;
+}
+
+.pagination-demo span {
+  display: inline-flex;
+  min-width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-navy);
+}
+
+.pagination-demo .is-active {
+  background: var(--color-navy);
+  color: #fff;
+  border-color: var(--color-navy);
+}
+
+.pagination-hint {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 24px;
+}
+
+.sidebar {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+  height: fit-content;
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.sidebar__close {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #f1f3f9;
+  color: var(--color-navy);
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: auto;
+}
+
+.sidebar h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.sidebar .filter-group {
+  margin-bottom: 18px;
+}
+
+.sidebar label {
+  display: block;
+  margin: 6px 0;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.sidebar input[type="range"] {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.range-value {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+.sidebar input[type="number"],
+.sidebar input[type="text"] {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  margin-top: 6px;
+}
+
+.sidebar select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  margin-top: 6px;
+  background: #fff;
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.select-hint {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 6px;
+}
+
+.sidebar strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text);
+}
+
+.author-box,
+.legal-box {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.author-box {
+  display: grid;
+  gap: 12px;
+}
+
+.author-box__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-box__avatar img {
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+.author-box__name {
+  font-weight: 700;
+  margin: 0;
+}
+
+.author-box__role {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.author-box__bio {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.author-box__links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.author-box--compact .author-box__avatar img {
+  width: 48px;
+  height: 48px;
+}
+
+.author-profile {
+  display: grid;
+  gap: 16px;
+}
+
+.author-posts {
+  display: grid;
+  gap: 12px;
+}
+
+.author-posts__item {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.author-posts__item h3 {
+  margin: 0 0 6px;
+}
+
+.author-posts__meta {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 24px 0 40px;
+  background: var(--color-navy-dark);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .mobile-filters-toggle {
+    display: inline-flex;
+  }
+
+  .sidebar {
+    order: -1;
+  }
+
+  .sidebar__close {
+    display: inline-flex;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+    position: fixed;
+    inset: 90px 16px auto;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    z-index: 30;
+  }
+
+  body.filters-open .sidebar {
+    display: block;
+  }
+
+  .filters-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 23, 57, 0.55);
+    z-index: 20;
+  }
+
+  body.filters-open .filters-backdrop {
+    display: block;
+  }
+}

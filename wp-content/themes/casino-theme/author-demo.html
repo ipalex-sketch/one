@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Author Demo</title>
+  <style>
+    :root {
+      --color-navy: #0c1e4a;
+      --color-navy-dark: #091739;
+      --color-accent: #2fb86e;
+      --color-bg: #f5f6fa;
+      --color-card: #ffffff;
+      --color-text: #1b1f2a;
+      --color-muted: #6b7280;
+      --color-border: #e6e8ef;
+      --shadow-soft: 0 8px 20px rgba(12, 30, 74, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Inter","Segoe UI",Arial,sans-serif; color: var(--color-text); background: var(--color-bg); }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+    .site-header { background: linear-gradient(90deg, var(--color-navy-dark), var(--color-navy)); color:#fff; padding:18px 0; }
+    .site-header .container { display:flex; align-items:center; justify-content:space-between; }
+    .site-logo { font-weight:700; font-size:20px; letter-spacing:.3px; }
+    .nav-menu { display:flex; gap:18px; font-size:14px; }
+
+    .hero { padding:48px 0 32px; }
+    .hero .container { background:#fff; border-radius:20px; padding:28px 32px; box-shadow:var(--shadow-soft); }
+    .hero h1 { font-size:clamp(28px,4vw,44px); margin-bottom:12px; }
+    .hero p { color:var(--color-muted); max-width:680px; }
+
+    .author-box { background:#fff; border-radius:16px; border:1px solid var(--color-border); padding:20px; box-shadow:var(--shadow-soft); display:grid; gap:12px; }
+    .author-box__header { display:flex; align-items:center; gap:12px; }
+    .author-box__avatar { width:64px; height:64px; border-radius:50%; background:#f0f2f8; display:grid; place-items:center; font-weight:700; color:var(--color-navy); }
+    .author-box__name { font-weight:700; margin:0; }
+    .author-box__role { font-size:12px; color:var(--color-muted); }
+    .author-box__bio { margin:0; color:var(--color-muted); font-size:14px; }
+    .author-box__links { display:flex; gap:10px; flex-wrap:wrap; }
+
+    .author-profile { display:grid; gap:16px; }
+    .author-posts { display:grid; gap:12px; }
+    .author-posts__item { background:#fff; border-radius:14px; border:1px solid var(--color-border); padding:16px; box-shadow:var(--shadow-soft); }
+    .author-posts__item h3 { margin:0 0 6px; }
+    .author-posts__meta { font-size:12px; color:var(--color-muted); }
+
+    .button { display:inline-flex; align-items:center; justify-content:center; padding:10px 16px; border-radius:999px; border:none; font-weight:600; cursor:pointer; }
+    .button--ghost { background:transparent; color:var(--color-navy); border:1px solid var(--color-border); }
+
+    .site-footer { margin-top:40px; padding:24px 0 40px; background:var(--color-navy-dark); color:#fff; }
+    @media (max-width:900px) { .nav-menu { display:none; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-logo">Casino Demo</div>
+      <nav class="nav-menu">
+        <span>Рейтинг казино</span>
+        <span>Бонусы</span>
+        <span>Ответственная игра</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Автор: Анна Романова</h1>
+        <p>Эксперт по бонусам и игровым предложениям. Пишет обзоры и следит за актуальностью рейтингов.</p>
+      </div>
+    </section>
+
+    <section class="container author-profile">
+      <div class="author-box">
+        <div class="author-box__header">
+          <div class="author-box__avatar">А</div>
+          <div>
+            <p class="author-box__name">Анна Романова</p>
+            <div class="author-box__role">Эксперт по бонусам</div>
+          </div>
+        </div>
+        <p class="author-box__bio">7+ лет опыта в анализе рынка казино, проверке бонусов и рейтингов.</p>
+        <div class="author-box__links">
+          <button class="button button--ghost" type="button">Связаться</button>
+        </div>
+      </div>
+
+      <div class="author-posts">
+        <h2>Последние статьи автора</h2>
+        <article class="author-posts__item">
+          <h3>Как выбирать казино с быстрыми выплатами</h3>
+          <div class="author-posts__meta">12 января 2024 · 5 мин чтения</div>
+          <p>Ключевые критерии, на которые стоит обратить внимание перед регистрацией.</p>
+          <button class="button button--ghost" type="button">Читать</button>
+        </article>
+        <article class="author-posts__item">
+          <h3>Лучшие бездепозитные бонусы недели</h3>
+          <div class="author-posts__meta">8 января 2024 · 4 мин чтения</div>
+          <p>Подборка выгодных предложений с минимальными требованиями к отыгрышу.</p>
+          <button class="button button--ghost" type="button">Читать</button>
+        </article>
+        <article class="author-posts__item">
+          <h3>Проверяем условия кэшбэка</h3>
+          <div class="author-posts__meta">3 января 2024 · 6 мин чтения</div>
+          <p>Разбираем, когда кэшбэк действительно выгоден и на что обратить внимание.</p>
+          <button class="button button--ghost" type="button">Читать</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© Demo Casino</div>
+  </footer>
+</body>
+</html>
