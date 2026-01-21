@@ -127,6 +127,7 @@ function casino_core_register_menu_terms() {
         }
     }
 }
+add_action('init', 'casino_core_register_menu_terms');
 
 function casino_core_render_term_seo_field($taxonomy) {
     ?>

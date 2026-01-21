@@ -6,6 +6,21 @@
 
 <form method="get">
     <section class="container">
+        <div class="filters">
+            <?php
+            $menu_terms = get_terms([
+                'taxonomy' => 'casino_menu',
+                'hide_empty' => false,
+            ]);
+            if (!empty($menu_terms) && !is_wp_error($menu_terms)) :
+                foreach ($menu_terms as $term) :
+                    ?>
+                    <a class="filter-chip" href="<?php echo esc_url(get_term_link($term)); ?>">
+                        <?php echo esc_html($term->name); ?>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
         <div class="filters-toolbar">
             <div class="filters-meta">Найдено казино: <?php echo esc_html($wp_query->found_posts); ?></div>
             <div class="filters-actions">

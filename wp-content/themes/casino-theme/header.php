@@ -15,8 +15,7 @@
         </a>
         <nav class="nav-menu">
             <a href="<?php echo esc_url(home_url('/casinos')); ?>">Рейтинг казино</a>
-            <a href="#">Бонусы</a>
-            <a href="#">Обзоры</a>
+            <a href="<?php echo esc_url(home_url('/bonuses')); ?>">Бонусы</a>
             <a href="#">Ответственная игра</a>
         </nav>
     </div>
