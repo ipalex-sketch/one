@@ -37,12 +37,15 @@
     </div>
 </section>
 
-<section class="container">
-    <div class="legal-box">
-        <h2 class="section-title">SEO текст</h2>
-        <div>
-            <?php echo wp_kses_post(get_term_meta($term->term_id, 'term_seo_text', true)); ?>
+<?php $seo_text = trim((string) get_term_meta($term->term_id, 'term_seo_text', true)); ?>
+<?php if ($seo_text !== '') : ?>
+    <section class="container">
+        <div class="legal-box">
+            <h2 class="section-title">SEO текст</h2>
+            <div>
+                <?php echo wp_kses_post($seo_text); ?>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 <?php get_footer(); ?>

@@ -127,7 +127,16 @@ function casino_core_register_menu_terms() {
         }
     }
 }
-add_action('init', 'casino_core_register_menu_terms');
+
+function casino_core_maybe_seed_menu_terms() {
+    if (get_option('casino_core_menu_terms_seeded')) {
+        return;
+    }
+
+    casino_core_register_menu_terms();
+    update_option('casino_core_menu_terms_seeded', true);
+}
+add_action('init', 'casino_core_maybe_seed_menu_terms');
 
 function casino_core_render_term_seo_field($taxonomy) {
     ?>
@@ -375,6 +384,7 @@ function casino_core_activate_plugin() {
     casino_core_register_post_type();
     casino_core_register_taxonomies();
     casino_core_register_menu_terms();
+    update_option('casino_core_menu_terms_seeded', true);
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'casino_core_activate_plugin');
